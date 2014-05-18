@@ -1,0 +1,10 @@
+node_modules
+dist
+.tmp
+.sass-cache
+app/bower_components
+.*.sw?
+PENDING
+app/config.js
+ansible/group_vars/production.yml
+
