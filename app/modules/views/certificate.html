@@ -1,0 +1,22 @@
+<h1>Emissão de certificado</h1>
+
+<form>
+  <p>
+    Esta inscrição tem permissão para emitir um certificado
+    da categoria <b>{{ certificate.category }}</b>, considerando
+    <b>{{ certificate.hours }}</b> horas de atividades.
+  </p>
+  <p>
+    Por favor confirme o nome a ser apresentado no certificado.
+    <b>NÃO</b> serão permitidas alterações posteriores ao nome
+    presente no certificado.
+  </p>
+  <input type="text"
+         ng-model="certificate.name"
+         focus-on="certificateName"
+         />
+
+  <button ng-click="doCertificate()">
+    emitir certificado
+  </button>
+</form>

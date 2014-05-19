@@ -1,0 +1,19 @@
+<form>
+  <h1>Login</h1>
+
+  <input type="text"
+        focus-on="email"
+        ng-model="credential.user"
+        placeholder="email utilizado no cadastro"
+        ui-keydown="{ 'enter': 'focusPassword()',
+                      'down':  'focusPassword()' }"
+        />
+
+  <input type="password"
+        focus-on="password"
+        ng-model="credential.pass"
+        placeholder="senha"
+        ui-keydown="{ 'enter': 'doLogin()',
+                      'up':    'focusEmail()' }"
+        />
+</form>
