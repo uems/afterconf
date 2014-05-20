@@ -21,6 +21,7 @@ angular
       });
   })
   .controller('CertificateCtrl', function($scope, focus, People, person) {
+    var locator = { xid: person.xid };
     $scope.person = person;
 
     $scope.certificate = {
@@ -29,16 +30,21 @@ angular
       hours:    36
     };
 
-    $scope.doCertificate = function() {
-      var locator = { xid: person.xid };
-      People.setCertificateName(locator, { certificateName: $scope.certificate.name }).$promise.then(function() {
-        return People.issueCertificate(locator).$promise;
-      }).then(function(result) {
-        console.log(result);
-        console.log('it seems like this worked!');
-      }).fail(function(err) {
-        console.log(err);
-      });
+    function success(result) {
+      console.log(result);
+    }
+
+    function failure(err) {
+      $scope.error = err;
+    }
+
+    $scope.issueCertificate = function() {
+      People.issueCertificate(locator, {}, success, failure);
+    };
+
+    $scope.setCertificateName = function() {
+      var data = { certificateName: $scope.certificate.name };
+      People.setCertificateName(locator, data, $scope.issueCertificate, failure);
     };
 
     focus('certificateName');
