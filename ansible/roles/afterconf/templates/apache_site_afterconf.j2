@@ -1,0 +1,16 @@
+<VirtualHost *:{{ webport }}>
+  ServerAdmin webmaster@localhost
+  ServerName  {{ sitename }}.{{ webhost }}
+
+  DocumentRoot /var/www/{{ sitename }}.{{ webhost }}
+  ErrorLog ${APACHE_LOG_DIR}/error.log
+  LogLevel warn
+
+  <Directory /var/www/{{ sitename }}.{{webhost }}>
+    Options FollowSymLinks MultiViews
+    AllowOverride All
+    Order allow,deny
+    allow from all
+  </Directory>
+
+</VirtualHost>

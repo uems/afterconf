@@ -1,0 +1,17 @@
+- name: copies files in dist to production dir
+  synchronize: src=../dist/
+                dest={{ app_path }}
+
+- name: configure the gateway host
+  template: src=config.js.j2
+            dest={{ app_path }}/config.js
+
+- name: Enable mod-rewrite
+  command: a2enmod rewrite
+
+- name: Disable apache site default
+  command: a2dissite default
+
+- name: Enable apache site certs
+  command: a2ensite certs
+  notify: restart apache2
