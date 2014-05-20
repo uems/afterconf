@@ -1,22 +1,64 @@
 <h1>Emissão de certificado</h1>
 
-<form>
+<section ng-show="person.issuedCertificate">
+  <h2>Certificado Emitido</h2>
+  <p>
+    Um certificado em nome de <b>{{ person.issuedCertificate.name }}</b>
+    referente à participação na condição de <b>{{ person.issuedCertificate.type }}</b>
+    foi emitido às <b>{{ person.issuedCertificate.issueDate | amDateFormat:'HH:mm:ss' }}</b>
+    do dia <b>{{ person.issuedCertificate.issueDate | amDateFormat:'DD/MM/YYYY' }}</b>, e
+    pode ser visualizado utilizando o endereço abaixo:
+  </p>
+
+  <h3>
+    <a href="{{ person.issuedCertificate.url }}" target="_blank">
+      {{ person.issuedCertificate.url }}
+    </a>
+  </h3>
+
+</section>
+
+<section ng-show="!person.validTickets.length">
+  <h2>Inscrição Inválida</h2>
+
+  <p>
+    A inscrição <b>{{ person.xid }}</b>, registrada
+    sob o e-mail <b>{{ person.email }}</b> em nome
+    de <b>{{ person.name }}</b> não possui nenhum
+    tíquete de entrada válido, e portanto não está
+    habilitada para receber certificados.
+  </p>
+  <p>
+    Em caso de dúvidas, entre em contato com
+    a organização do evento, através do e-mail
+    {{ Config.SupportEmail }}.
+  </p>
+</section>
+
+<section ng-show="person.issuableCertificate">
+  <h2>Confirmação de Nome</h2>
   <p>
     Esta inscrição tem permissão para emitir um certificado
     da categoria <b>{{ certificate.category }}</b>, considerando
     <b>{{ certificate.hours }}</b> horas de atividades.
   </p>
   <p>
-    Por favor confirme o nome a ser apresentado no certificado.
-    <b>NÃO</b> serão permitidas alterações posteriores ao nome
-    presente no certificado.
+    Por favor, confirme no campo abaixo o nome a ser apresentado
+    no certificado. Salientamos que <b>NÃO</b> serão permitidas
+    alterações posteriores ao nome presente no certificado.
   </p>
-  <input type="text"
-         ng-model="certificate.name"
-         focus-on="certificateName"
-         />
+  <form>
+    <input type="text"
+          ng-model="certificate.name"
+          focus-on="certificateName"
+          ng-disabled="loading"
+          />
 
-  <button ng-click="setCertificateName()">
-    emitir certificado
-  </button>
-</form>
+    <button ng-click="setCertificateName()"
+            ng-disabled="loading">
+      emitir certificado
+    </button>
+
+    <img src="ajax-loader.gif" ng-show="loading" />
+  </form>
+</section>

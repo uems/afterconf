@@ -11,7 +11,7 @@ angular
     'ac.controllers.home',
     'ac.controllers.certificate',
   ])
-  .controller('AfterConfCtrl', function($rootScope, $scope, $state, Session) {
+  .controller('AfterConfCtrl', function($rootScope, $scope, $state, Config, Session) {
     $scope.$watchCollection(Session.current,
       function(newValue) { $scope.session = newValue; }
     );
@@ -23,9 +23,19 @@ angular
       $state.go('auth');
     });
 
+    $scope.$on('$stateChangeSuccess', function(event, newState) {
+      $scope.topState = newState.name.split('.')[0];
+      $scope.state    = newState;
+    });
+
     $scope.logout = function() {
       Session.logout();
+      $state.go('auth');
     };
+
+    $scope.logged = Session.isLogged();
+
+    $scope.Config = Config;
   })
  .config(function($urlRouterProvider) {
     $urlRouterProvider.otherwise('/');

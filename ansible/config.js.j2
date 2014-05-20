@@ -1,3 +1,6 @@
 angular
   .module('ac.config', [ 'ac' ])
-  .constant('GatewayHost', '{{ gateway_host }}');
+  .constant('Config', {
+    'GatewayHost': '{{ gateway_host }}',
+    'SupportEmail: '{{ support_email }}'
+  });

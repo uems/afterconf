@@ -33,7 +33,7 @@ angular
       .state('auth', {
         url: '^/auth/',
         views: {
-          header: { },
+          header: {                          templateUrl: 'modules/views/nav.html' },
           main:   { controller: 'AuthCtrl',  template: '<ui-view name="auth" />' }
         }
       })

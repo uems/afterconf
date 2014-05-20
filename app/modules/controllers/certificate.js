@@ -5,6 +5,7 @@ angular
     'ac.directives.focusOn',
     'ac.services.people',
     'ac.services.auth',
+    'angularMoment',
     'ui.router',
   ])
   .config(function($stateProvider) {
@@ -20,7 +21,7 @@ angular
         }
       });
   })
-  .controller('CertificateCtrl', function($scope, focus, People, person) {
+  .controller('CertificateCtrl', function($scope, $window, focus, People, person) {
     var locator = { xid: person.xid };
     $scope.person = person;
 
@@ -30,11 +31,12 @@ angular
       hours:    36
     };
 
-    function success(result) {
-      console.log(result);
+    function success() {
+      $window.location.reload();
     }
 
     function failure(err) {
+      $scope.loading = false;
       $scope.error = err;
     }
 
@@ -43,6 +45,7 @@ angular
     };
 
     $scope.setCertificateName = function() {
+      $scope.loading = true;
       var data = { certificateName: $scope.certificate.name };
       People.setCertificateName(locator, data, $scope.issueCertificate, failure);
     };

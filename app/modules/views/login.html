@@ -1,6 +1,26 @@
 <form>
   <h1>Login</h1>
 
+  <p>
+    O login neste sistema encontra-se restrito,
+    sendo possível apenas através do link especial
+    enviado por e-mail aos participantes.
+  </p>
+
+  <p>
+    Se você tem certificados para emitir nesse
+    evento, por favor utilize o link que foi
+    enviado por e-mail.
+  </p>
+
+  <p>
+    Em caso de dúvidas, entre em contato com
+    a organização do evento, através do e-mail
+    {{ Config.SupportEmail }}.
+  </p>
+
+
+  <!--
   <input type="text"
         focus-on="email"
         ng-model="credential.user"
@@ -16,4 +36,9 @@
         ui-keydown="{ 'enter': 'doLogin()',
                       'up':    'focusEmail()' }"
         />
+
+  <button>
+    entrar
+  </button>
+  -->
 </form>

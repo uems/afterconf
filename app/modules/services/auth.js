@@ -50,10 +50,10 @@ angular
 
     return self;
   })
-  .service('Auth', function($state, $resource, $q, GatewayHost, Session, authService) {
+  .service('Auth', function($state, $resource, $q, Config, Session, authService) {
     var self = {};
 
-    var endpoint = GatewayHost + '/token';
+    var endpoint = Config.GatewayHost + '/token';
     var resource = $resource(endpoint, {}, {
       'fromLogin': { method: 'POST', url: endpoint + '/from-login' },
       'fromHash':  { method: 'POST', url: endpoint + '/from-hash' },

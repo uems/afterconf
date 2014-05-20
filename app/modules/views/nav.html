@@ -1,9 +1,13 @@
-<h2>
-  nav
-</h2>
-<a ui-sref="home">
-  home
-</a>
-<a ng-click="logout()">
-  logout
-</a>
+<h1>
+  Pós-Evento
+</h1>
+<nav>
+  <ul>
+    <li ui-sref="home" ng-show="logged">
+      página inicial
+    </li>
+    <li ng-click="logout()" ng-show="logged">
+      sair
+    </li>
+  </ul>
+</nav>

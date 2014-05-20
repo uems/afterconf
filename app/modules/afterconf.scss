@@ -1,4 +1,4 @@
-$header-height: 6rem;
+$header-height: 3rem;
 
 body {
   font-family: "Open Sans", sans-serif;
@@ -11,9 +11,8 @@ body {
     width: 100%;
     height: $header-height;
     position: fixed;
-    background: lightgray;
     z-index: 2;
-
+    background: url(/logo_grande.png) no-repeat 0% -5% yellow;
   }
   &>main {
     position: absolute;
@@ -32,6 +31,10 @@ body {
     font-size: small;
     background: gray;
     padding: 0.5rem;
+    opacity: .2;
+    &:hover {
+      opacity: 1;
+    }
   }
 
 }

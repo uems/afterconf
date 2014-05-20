@@ -11,8 +11,8 @@ angular
     return People.get({ xid: xid });
 
   })
-  .service('People', function($resource, GatewayHost) {
-    var endpoint = GatewayHost + '/people/:xid';
+  .service('People', function($resource, Config) {
+    var endpoint = Config.GatewayHost + '/people/:xid';
     var actions = {
       'setCertificateName': { method: 'POST', url: endpoint + '/set-certificate-name' },
       'issueCertificate':   { method: 'POST', url: endpoint + '/issue-certificate'    }
