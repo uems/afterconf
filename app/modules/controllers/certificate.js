@@ -21,6 +21,15 @@ angular
         }
       });
   })
+  .filter('fixType', function() {
+    return function(input) {
+      switch (input) {
+        case 'speaker':     return 'Palestrante';
+        case 'participant': return 'Participante';
+        default:            return 'Participante';
+      }
+    };
+  })
   .controller('CertificateCtrl', function($scope, $window, focus, People, person) {
     var locator = { xid: person.xid };
     $scope.person = person;

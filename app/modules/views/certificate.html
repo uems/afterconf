@@ -4,7 +4,7 @@
   <h2>Certificado Emitido</h2>
   <p>
     Um certificado em nome de <b>{{ person.issuedCertificate.name }}</b>
-    referente à participação na condição de <b>{{ person.issuedCertificate.type }}</b>
+    referente à participação na condição de <b>{{ person.issuedCertificate.type | fixType }}</b>
     foi emitido às <b>{{ person.issuedCertificate.issueDate | amDateFormat:'HH:mm:ss' }}</b>
     do dia <b>{{ person.issuedCertificate.issueDate | amDateFormat:'DD/MM/YYYY' }}</b>, e
     pode ser visualizado utilizando o endereço abaixo:
@@ -39,7 +39,7 @@
   <h2>Confirmação de Nome</h2>
   <p>
     Esta inscrição tem permissão para emitir um certificado
-    da categoria <b>{{ certificate.category }}</b>, considerando
+    da categoria <b>{{ certificate.issuableCertificate.type | fixType }}</b>, considerando
     <b>{{ certificate.hours }}</b> horas de atividades.
   </p>
   <p>
