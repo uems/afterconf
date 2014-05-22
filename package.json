@@ -4,7 +4,9 @@
   "description": "After-conference Single-Page Application",
   "main": "index.js",
   "dependencies": {
-    "gulp": "^3.6.2"
+    "gulp": "^3.6.2",
+    "gulp-concat": "^2.2.0",
+    "gulp-uglify": "^0.3.0"
   },
   "devDependencies": {
     "q": "^1.0.1",

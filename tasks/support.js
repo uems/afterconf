@@ -23,13 +23,23 @@ function streamStylesheets() {
   };
 
   self.vendor = function() {
-    return plugins.bowerFiles()
-                  .pipe(plugins.ignore.exclude('**/*.js'))
-                  .pipe(plugins.sass(sassParms));
+    var stream = plugins.bowerFiles()
+                        .pipe(plugins.ignore.exclude('**/*.js'))
+                        .pipe(plugins.sass(sassParms));
+
+    if (!plugins.util.env.production) { return stream; }
+
+    return stream.pipe(plugins.concat('ac-v.min.css'))
+                 .pipe(plugins.minifyCss());
   };
   self.custom = function() {
-    return gulp.src(paths.stylesheets)
-               .pipe(plugins.sass(sassParms));
+    var stream = gulp.src(paths.stylesheets)
+                     .pipe(plugins.sass(sassParms));
+
+    if (!plugins.util.env.production) { return stream; }
+
+    return stream.pipe(plugins.concat('ac-c.min.css'))
+                 .pipe(plugins.minifyCss());
   };
   self.all = function() {
     return merge(self.vendor(), self.custom());
@@ -42,11 +52,21 @@ function streamJavascripts() {
   var self = {};
 
   self.vendor = function() {
-    return plugins.bowerFiles().pipe(plugins.ignore.exclude('**/*.css'));
+    var stream = plugins.bowerFiles().pipe(plugins.ignore.exclude('**/*.css'));
+
+    if (!plugins.util.env.production) { return stream; }
+
+    return stream.pipe(plugins.concat('ac-v.min.js', { soRrceContent: true }))
+                 .pipe(plugins.uglify({ mangle: false }));
   };
 
   self.custom = function() {
-    return gulp.src(paths.javascripts);
+    var stream = gulp.src(paths.javascripts);
+
+    if (!plugins.util.env.production) { return stream; }
+
+    return stream.pipe(plugins.concat('ac-c.min.js', { sourceContent: true }))
+                 .pipe(plugins.uglify({ mangle: false }));
   };
 
   self.all = function() {
