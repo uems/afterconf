@@ -34,11 +34,7 @@ angular
     var locator = { xid: person.xid };
     $scope.person = person;
 
-    $scope.certificate = {
-      name:     person.certificateName || person.name,
-      category: person.category,
-      hours:    36
-    };
+    $scope.certificate = person.issuableCertificate;
 
     function success() {
       $window.location.reload();
