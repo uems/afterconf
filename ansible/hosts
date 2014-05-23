@@ -1,2 +1,2 @@
 [production]
-afterconf.fisl.softwarelivre.org ansible_ssh_user=root
+afterconf.fisl15.softwarelivre.org ansible_ssh_user=root
